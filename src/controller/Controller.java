@@ -70,10 +70,11 @@ public class Controller {
         return subA;
     }
 
-    public static void markSheet() {
+    public static Marks[] markSheet() {
         int countStudent = -1, countSubject = -1;
         countStudent = sa.length;
         countSubject = subA.length;
+        float diem = -1;
         if (countStudent == 0 || countSubject == 0) {
             System.out.println("Chưa có thông tin sinh viên hoặc môn học!");
         } else {
@@ -81,7 +82,8 @@ public class Controller {
             for (int i = 0; i < countStudent; i++) {
                 boolean check = false;
                 Student tempStudent = sa[i];
-                System.out.print("Nhập số môn học cho sinh viên " + tempStudent.getSid()+ " (sinh viên " + tempStudent.getName() + ": ");
+                System.out.print("Nhập số môn học cho sinh viên " + tempStudent.getSid()+
+                        " (sinh viên " + tempStudent.getName() + "): ");
                 int slMonHoc;
                 do {
                     slMonHoc = in.nextInt();
@@ -100,7 +102,7 @@ public class Controller {
                 boolean check1 = true;
                 for (int j = 0; j < slMonHoc; j++) {
                     Subject checksub;
-                    System.out.println("Nhập ID môn học: ");
+                    System.out.print("Nhập ID môn học: ");
                     do {
                         int id = in.nextInt();
                         checksub = searchForSubject(subA, id);
@@ -118,7 +120,6 @@ public class Controller {
                         }
                     } while (check1);
                     System.out.print("Nhập điểm của sinh viên: ");
-                    float diem = -1;
                     do {
                         diem = in.nextFloat();
                         if (diem < 0 || diem > 10)
@@ -128,12 +129,13 @@ public class Controller {
                     System.out.println("===========");
                 }
                 marks[i] = new Marks();
+
             }
-            showMarks();
         }
+        return marks;
     }
 
-    public static void showMarks() {
+    public void showMarks() {
         for (int i = 0; i < marks.length; i++) {
             System.out.println(marks[i].toString());
         }

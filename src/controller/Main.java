@@ -1,5 +1,6 @@
 package controller;
 
+import model.Marks;
 import model.Student;
 import model.Subject;
 
@@ -12,6 +13,7 @@ public class Main {
         Controller controller = new Controller();
         Student[] sa;
         Subject[] subA;
+        Marks[] marks;
         IOFile io = new IOFile();
         do{
             System.out.println("===========MENU==========");
@@ -39,7 +41,10 @@ public class Main {
                     io.readSubjectFromFile();
                     break;
                 case 3:
-                    controller.markSheet();
+                    marks = controller.markSheet();
+                    for (int i = 0; i < marks.length; i++) {
+                        System.out.println(marks[i].toString());
+                    }
                     break;
             }
         }while(choice != 0);
